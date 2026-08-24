@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site</title>
+    <link rel="stylesheet" href="desktop.css">
+</head>
+<body>
+    <div class="top">
+        <p style="margin-left: 16px;">jaronos</p>
+        <p id="liveClock"></p>
+    </div>
+    <div class="desktop-icons">
+        <button class="desktop-icon" type="button" data-opens-window="jaronaWindow" aria-label="Open Jarona">
+            <span class="app-icon jarona-icon" aria-hidden="true">J</span>
+            <span>Jarona</span>
+        </button>
+        <button class="desktop-icon" type="button" data-opens-window="welcomeWindow" aria-label="Open Welcome">
+            <span class="app-icon welcome-icon" aria-hidden="true">W</span>
+            <span>Welcome</span>
+        </button>
+        <button class="desktop-icon" id="filesLauncher" type="button" aria-label="Open Files">
+            <span class="folder-icon" aria-hidden="true"></span>
+            <span>Files</span>
+        </button>
+    </div>
+    <div class="window woa" id="jaronaWindow" style="top: 80px; left: 40px;">
+        <div class="window-header">
+            <span>jarona</span>
+            <div class="window-controls">
+                <button class="maximize-window" type="button" aria-label="Maximize window">&#9633;</button>
+                <button class="close-window" type="button" aria-label="Close window">&times;</button>
+            </div>
+        </div>
+        <div class="window-content">
+            <h1>its my jarona!</h1>
+        </div>
+    </div>
+    <div class="window welcome" id="welcomeWindow" style="top: 160px; left: 260px;">
+        <div class="window-header">
+            <span>Welcome</span>
+            <div class="window-controls">
+                <button class="maximize-window" type="button" aria-label="Maximize window">&#9633;</button>
+                <button class="close-window" type="button" aria-label="Close window">&times;</button>
+            </div>
+        </div>
+        <div class="window-content">
+        <audio id="themusic" loop>
+            <source src="music/driving.mp3" type="audio/mpeg">
+            Audio is disabled
+        </audio>
+
+        <h1>Welcome to JaronOS</h1>
+        <p>This site is based off of deltarune chapter 5, but it is still very enjoyable if you haven't played it.</p>
+        <button id="musicButton" onclick="toggleMusic()">turn on music</button>
+        <script>
+        const music = document.getElementById("themusic");
+        const button = document.getElementById("musicButton");
+        let isMediaLoading = false; 
+
+        function toggleMusic() {
+            if (!music) {
+                console.error("Could not find the HTML audio element with ID 'themusic'.");
+                return;
+            }
+
+            if (isMediaLoading) return;
+
+            if (music.paused) {
+                isMediaLoading = true;
+                
+                music.play()
+                    .then(() => {
+                        isMediaLoading = false; 
+                        button.textContent = "turn off music";
+                    })
+                    .catch(error => {
+                        isMediaLoading = false; 
+                        console.error("Playback failed:", error);
+                    });
+            } else {
+                music.pause();
+                button.textContent = "you turned it on and then off again??? how rude.";
+            }
+        }
+        </script>
+        </div>
+    </div>
+    <div class="window files-window is-closed" style="top: 120px; left: 120px;">
+        <div class="window-header">
+            <span>Files</span>
+            <div class="window-controls">
+                <button class="maximize-window" type="button" aria-label="Maximize window">&#9633;</button>
+                <button class="close-window" type="button" aria-label="Close window">&times;</button>
+            </div>
+        </div>
+        <div class="window-content file-list">
+            <a href="index.html" target="_blank">index.html</a>
+            <a href="desktop.css" target="_blank">desktop.css</a>
+            <a href="time.js" target="_blank">time.js</a>
+            <a href="window.js" target="_blank">window.js</a>
+            <a href="image/bg1.png" target="_blank">image/bg1.png</a>
+            <a href="music/driving.mp3" target="_blank">music/driving.mp3</a>
+            <a href="sfx/deltarune-jarona.mp3" target="_blank">sfx/deltarune-jarona.mp3</a>
+            <a href="sfx/error_CDOxCYm.mp3" target="_blank">sfx/error_CDOxCYm.mp3</a>
+            <a href="sfx/notification_o14egLP.mp3" target="_blank">sfx/notification_o14egLP.mp3</a>
+            <a href="sfx/weird-route-jingle.mp3" target="_blank">sfx/weird-route-jingle.mp3</a>
+            <a href="sfx/you-are-an-idiot.mp3" target="_blank">sfx/you-are-an-idiot.mp3</a>
+        </div>
+    </div>
+    <script src="time.js"></script>
+    <script src="window.js"></script>
+</body>
+</html>
