@@ -1,0 +1,81 @@
+#browserWindow .browser-container,
+#browserWindow .browser-container * {
+    box-sizing: border-box;
+}
+
+#browserWindow .browser-container {
+    width: 95vw;
+    height: 90vh;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* Navigation control bar */
+#browserWindow .browser-header {
+    background-color: #f1f3f4;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid black;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+#browserWindow .nav-buttons {
+    display: flex;
+    gap: 5px;
+}
+
+#browserWindow .nav-buttons button,
+#browserWindow #go-btn {
+    background: none;
+    border: none;
+    padding: 6px 10px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background 0.2s;
+}
+
+#browserWindow .nav-buttons button:hover,
+#browserWindow #go-btn:hover {
+    background-color: #e8eaed;
+}
+
+/* Address input field */
+#browserWindow .address-bar-container {
+    display: flex;
+    flex-grow: 1;
+    background-color: #ffffff;
+    border: 1px solid #dadce0;
+    border-radius: 20px;
+    padding: 4px 12px;
+    align-items: center;
+}
+
+#browserWindow #address-bar {
+    width: 100%;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    color: #3c4043;
+}
+
+/* Embedded web window */
+#browserWindow .browser-body {
+    flex-grow: 1;
+    background-color: #ffffff;
+    position: relative;
+}
+
+#browserWindow #web-viewport {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background-color: #fff;
+}

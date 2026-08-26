@@ -1,0 +1,9 @@
+.petal {
+    position: absolute;
+    pointer-events: none;
+    mix-blend-mode: screen;
+
+    border-radius: 0 50% 0 50%;
+    transform-origin: center;
+    transition: transform 2s linear, opacity 2s ease-out;
+}

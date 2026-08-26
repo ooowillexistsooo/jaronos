@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Site</title>
-    <link rel="stylesheet" href="desktop.css">
+    <title>JaronOS</title>
+    <link rel="stylesheet" href="css/desktop.css">
+    <link rel="stylesheet" href="css/browser.css">
+    <link rel="stylesheet" href="css/petal.css">
 </head>
 <body>
     <div class="top">
@@ -20,12 +22,12 @@
             <span class="app-icon welcome-icon" aria-hidden="true">W</span>
             <span>Welcome</span>
         </button>
-        <button class="desktop-icon" id="filesLauncher" type="button" aria-label="Open Files">
-            <span class="folder-icon" aria-hidden="true"></span>
-            <span>Files</span>
+        <button class="desktop-icon" id="filesLauncher" type="button" data-opens-window="browserWindow" aria-label="Open Browser">
+            <span class="app-icon" aria-hidden="true">B</span>
+            <span>Browser</span>
         </button>
     </div>
-    <div class="window woa" id="jaronaWindow" style="top: 80px; left: 40px;">
+    <div class="window woa is-closed" id="jaronaWindow" style="top: 80px; left: 40px;">
         <div class="window-header">
             <span>jarona</span>
             <div class="window-controls">
@@ -87,29 +89,36 @@
         </script>
         </div>
     </div>
-    <div class="window files-window is-closed" style="top: 120px; left: 120px;">
+    <div class="window browse is-closed" id="browserWindow" style="top: 120px; left: 120px;">
         <div class="window-header">
-            <span>Files</span>
+            <span>Browser</span>
             <div class="window-controls">
                 <button class="maximize-window" type="button" aria-label="Maximize window">&#9633;</button>
                 <button class="close-window" type="button" aria-label="Close window">&times;</button>
             </div>
         </div>
-        <div class="window-content file-list">
-            <a href="index.html" target="_blank">index.html</a>
-            <a href="desktop.css" target="_blank">desktop.css</a>
-            <a href="time.js" target="_blank">time.js</a>
-            <a href="window.js" target="_blank">window.js</a>
-            <a href="image/bg1.png" target="_blank">image/bg1.png</a>
-            <a href="music/driving.mp3" target="_blank">music/driving.mp3</a>
-            <a href="sfx/deltarune-jarona.mp3" target="_blank">sfx/deltarune-jarona.mp3</a>
-            <a href="sfx/error_CDOxCYm.mp3" target="_blank">sfx/error_CDOxCYm.mp3</a>
-            <a href="sfx/notification_o14egLP.mp3" target="_blank">sfx/notification_o14egLP.mp3</a>
-            <a href="sfx/weird-route-jingle.mp3" target="_blank">sfx/weird-route-jingle.mp3</a>
-            <a href="sfx/you-are-an-idiot.mp3" target="_blank">sfx/you-are-an-idiot.mp3</a>
+        <div class="browser-container">
+            <div class="browser-header">
+                <div class="nav-buttons">
+                    <button id="back-btn" title="Back">←</button>
+                    <button id="forward-btn" title="Forward">→</button>
+                    <button id="reload-btn" title="Reload">↻</button>
+                </div>
+
+                <form id="address-form" class="address-bar-container">
+                    <input type="text" id="address-bar" placeholder="e.g. https://willexists.space i know shameless self promotion">
+                    <button type="submit" id="go-btn">Go</button>
+                </form>
+            </div>
+
+            <div class="browser-body">
+                <iframe id="web-viewport" src="https://google.com" sandbox="allow-scripts allow-same-origin allow-forms"></iframe>
+            </div>
+            <script src="browser.js"></script>
         </div>
     </div>
-    <script src="time.js"></script>
-    <script src="window.js"></script>
+    <script src="js/time.js"></script>
+    <script src="js/window.js"></script>
+    <script src="js/petal.js"></script>
 </body>
 </html>

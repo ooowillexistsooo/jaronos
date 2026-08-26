@@ -61,7 +61,7 @@ div.window {
 }
 
 body {
-    background-image: url(image/bg1.png);
+    background-image: url(../image/bg1.png);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -111,16 +111,6 @@ div.welcome {
 .desktop-icon:focus-visible {
     background: rgba(0, 0, 0, 0.25);
     outline: 1px dotted white;
-}
-
-.folder-icon {
-    position: relative;
-    display: block;
-    width: 38px;
-    height: 28px;
-    border: 2px solid #173d8f;
-    border-radius: 2px;
-    background: #ffd447;
 }
 
 .folder-icon::before {

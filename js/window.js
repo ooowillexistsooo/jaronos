@@ -3,16 +3,16 @@ document.querySelectorAll(".window").forEach(setupWindow);
 document.querySelectorAll("[data-opens-window]").forEach((launcher) => {
   launcher.addEventListener("click", () => {
     const targetWindow = document.getElementById(launcher.dataset.opensWindow);
-    targetWindow.classList.remove("is-closed");
-    targetWindow.style.zIndex = "2";
+    openWindow(targetWindow);
   });
 });
 
-document.getElementById("filesLauncher").addEventListener("click", () => {
-  const filesWindow = document.querySelector(".files-window");
-  filesWindow.classList.remove("is-closed");
-  filesWindow.style.zIndex = "2";
-});
+function openWindow(element) {
+  if (!element) return;
+
+  element.classList.remove("is-closed");
+  element.style.zIndex = "2";
+}
 
 function setupWindow(element) {
   const header = element.querySelector(".window-header");
@@ -22,12 +22,20 @@ function setupWindow(element) {
   let initialY = 0;
   let savedBounds = null;
 
-  header.addEventListener("mousedown", startDragging);
-  header.addEventListener("mousedown", () => {
-    element.style.zIndex = "2";
-  });
-  closeButton.addEventListener("click", () => element.classList.add("is-closed"));
-  maximizeButton.addEventListener("click", toggleMaximize);
+  if (header) {
+    header.addEventListener("mousedown", startDragging);
+    header.addEventListener("mousedown", () => {
+      element.style.zIndex = "2";
+    });
+  }
+
+  if (closeButton) {
+    closeButton.addEventListener("click", () => element.classList.add("is-closed"));
+  }
+
+  if (maximizeButton) {
+    maximizeButton.addEventListener("click", toggleMaximize);
+  }
 
   function startDragging(e) {
     if (e.target.closest("button") || element.classList.contains("maximized")) return;
@@ -63,7 +71,7 @@ function setupWindow(element) {
       element.style.left = savedBounds.left;
       element.style.width = savedBounds.width;
       element.style.height = savedBounds.height;
-      maximizeButton.setAttribute("aria-label", "Maximize window");
+      maximizeButton?.setAttribute("aria-label", "Maximize window");
       return;
     }
 
@@ -74,6 +82,6 @@ function setupWindow(element) {
       height: `${element.offsetHeight}px`
     };
     element.classList.add("maximized");
-    maximizeButton.setAttribute("aria-label", "Restore window");
+    maximizeButton?.setAttribute("aria-label", "Restore window");
   }
 }
