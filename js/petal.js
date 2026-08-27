@@ -26,4 +26,4 @@ window.addEventListener('mousemove', (e) => {
     setTimeout(() => {
         petal.remove();
     }, 2000);
-})
+});

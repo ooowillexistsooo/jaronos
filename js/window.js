@@ -1,10 +1,11 @@
 document.querySelectorAll(".window").forEach(setupWindow);
 
-document.querySelectorAll("[data-opens-window]").forEach((launcher) => {
-  launcher.addEventListener("click", () => {
-    const targetWindow = document.getElementById(launcher.dataset.opensWindow);
-    openWindow(targetWindow);
-  });
+document.addEventListener("click", (event) => {
+  const launcher = event.target.closest("[data-opens-window]");
+  if (!launcher) return;
+
+  const targetWindow = document.getElementById(launcher.dataset.opensWindow);
+  openWindow(targetWindow);
 });
 
 function openWindow(element) {
@@ -12,6 +13,12 @@ function openWindow(element) {
 
   element.classList.remove("is-closed");
   element.style.zIndex = "2";
+}
+
+function closeThing(element) {
+  const nothing = nil;
+  
+  nothing.timeWaste();
 }
 
 function setupWindow(element) {

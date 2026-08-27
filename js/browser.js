@@ -6,6 +6,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const backBtn = document.getElementById('back-btn');
     const forwardBtn = document.getElementById('forward-btn');
 
+    if (!addressForm || !addressBar || !viewport) return;
+
     addressForm.addEventListener('submit', (e) => {
         e.preventDefault();
         let url = addressBar.value.trim();
@@ -21,18 +23,30 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     reloadBtn.addEventListener('click', () => {
-        viewport.src = viewport.src;
+        viewport.contentWindow.location.reload();
     });
 
     backBtn.addEventListener('click', () => {
         try {
-            window.history.back();
+            viewport.contentWindow.history.back();
         } catch (err) {
-            console.warn("history restricted its not my fault i swear")
+            console.warn("The embedded page does not allow back navigation.");
         }
     });
 
     forwardBtn.addEventListener('click', () => {
-        console.warn("going forward is also blocked im sorry :(")
+        try {
+            viewport.contentWindow.history.forward();
+        } catch (err) {
+            console.warn("The embedded page does not allow forward navigation.");
+        }
+    });
+
+    viewport.addEventListener('load', () => {
+        try {
+            addressBar.value = viewport.contentWindow.location.href;
+        } catch (err) {
+            addressBar.value = viewport.src;
+        }
     });
 });

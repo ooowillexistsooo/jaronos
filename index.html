@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JaronOS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="css/desktop.css">
     <link rel="stylesheet" href="css/browser.css">
     <link rel="stylesheet" href="css/petal.css">
@@ -31,7 +32,7 @@
             <span>Settings</span>
         </button>
     </div>
-    <div class="window woa is-closed" id="jaronaWindow" style="top: 80px; left: 40px;">
+    <div class="window woa is-closed" id="jaronaWindow" style="top: 180px; left: 80px;">
         <div class="window-header">
             <span>jarona</span>
             <div class="window-controls">
@@ -43,7 +44,7 @@
             <h1>its my jarona!</h1>
         </div>
     </div>
-    <div class="window welcome" id="welcomeWindow" style="top: 160px; left: 260px;">
+    <div class="window welcome" id="welcomeWindow" style="top: 240px; left: 360px;">
         <div class="window-header">
             <span>Welcome</span>
             <div class="window-controls">
@@ -93,7 +94,7 @@
         </script>
         </div>
     </div>
-    <div class="window browse is-closed" id="browserWindow" style="top: 120px; left: 120px;">
+    <div class="window browse is-closed" id="browserWindow" style="top: 180px; left: 680px;">
         <div class="window-header">
             <span>Browser</span>
             <div class="window-controls">
@@ -118,12 +119,12 @@
             <div class="browser-body">
                 <iframe id="web-viewport" src="https://google.com" sandbox="allow-scripts allow-same-origin allow-forms"></iframe>
             </div>
-            <script src="browser.js"></script>
+            <script src="js/browser.js"></script>
         </div>
     </div>
-    <div class="window woa is-closed" id="customWindow" style="top: 80px; left: 40px;">
+    <div class="window woa is-closed" id="customWindow" style="top: 320px; left: 160px;">
         <div class="window-header">
-            <span>jarona</span>
+            <span>settings</span>
             <div class="window-controls">
                 <button class="maximize-window" type="button" aria-label="Maximize window">&#9633;</button>
                 <button class="close-window" type="button" aria-label="Close window">&times;</button>
