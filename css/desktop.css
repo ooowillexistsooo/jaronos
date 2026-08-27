@@ -142,8 +142,16 @@ div.welcome {
     background: #ef6f8e;
 }
 
+.settings-icon {
+    background: #866fef;
+}
+
 .welcome-icon {
     background: #4b9bd4;
+}
+
+.browser-icon {
+    background: #6fef84;
 }
 
 .file-list {

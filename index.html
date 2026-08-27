@@ -15,16 +15,20 @@
     </div>
     <div class="desktop-icons">
         <button class="desktop-icon" type="button" data-opens-window="jaronaWindow" aria-label="Open Jarona">
-            <span class="app-icon jarona-icon" aria-hidden="true">J</span>
+            <span class="app-icon jarona-icon" aria-hidden="true"><i class="fa-solid fa-fan"></i></span>
             <span>Jarona</span>
         </button>
         <button class="desktop-icon" type="button" data-opens-window="welcomeWindow" aria-label="Open Welcome">
-            <span class="app-icon welcome-icon" aria-hidden="true">W</span>
+            <span class="app-icon welcome-icon" aria-hidden="true"><i class="fa-solid fa-door-open"></i></span>
             <span>Welcome</span>
         </button>
         <button class="desktop-icon" id="filesLauncher" type="button" data-opens-window="browserWindow" aria-label="Open Browser">
-            <span class="app-icon" aria-hidden="true">B</span>
+            <span class="app-icon browser-icon" aria-hidden="true"><i class="fa-solid fa-globe"></i></span>
             <span>Browser</span>
+        </button>
+        <button class="desktop-icon" type="button" data-opens-window="customWindow" aria-label="Open Settings">
+            <span class="app-icon settings-icon" aria-hidden="true"><i class="fa-solid fa-gear"></i></span>
+            <span>Settings</span>
         </button>
     </div>
     <div class="window woa is-closed" id="jaronaWindow" style="top: 80px; left: 40px;">
@@ -117,8 +121,23 @@
             <script src="browser.js"></script>
         </div>
     </div>
+    <div class="window woa is-closed" id="customWindow" style="top: 80px; left: 40px;">
+        <div class="window-header">
+            <span>jarona</span>
+            <div class="window-controls">
+                <button class="maximize-window" type="button" aria-label="Maximize window">&#9633;</button>
+                <button class="close-window" type="button" aria-label="Close window">&times;</button>
+            </div>
+        </div>
+        <div class="window-content">
+            <h1>Settings</h1>
+            <button onclick="changeBackground()">Change Background</button>
+        </div>
+    </div>
     <script src="js/time.js"></script>
     <script src="js/window.js"></script>
     <script src="js/petal.js"></script>
+    <script src="js/background.js"></script>
+    <script src="https://kit.fontawesome.com/290c5a7a5b.js" crossorigin="anonymous"></script>
 </body>
 </html>
