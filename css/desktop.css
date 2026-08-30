@@ -8,6 +8,7 @@ div.window {
     border: 2px solid blue;
     background-color: aliceblue;
     box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.35);
+    z-index: 2;
 }
 
 .window-header {
@@ -94,7 +95,7 @@ div.welcome {
     top: 56px;
     left: 16px;
     gap: 8px;
-    z-index: 20;
+    z-index: 1;
 }
 
 .desktop-icon {
@@ -158,6 +159,10 @@ div.welcome {
 
 .browser-icon {
     background: #6fef84;
+}
+
+.weather-icon {
+    background: #efe46f;
 }
 
 .file-list {

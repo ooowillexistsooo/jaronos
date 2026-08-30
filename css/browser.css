@@ -79,3 +79,58 @@
     border: none;
     background-color: #fff;
 }
+
+.weather {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 20px;
+    width: max-content;
+    background: rgba(255,255,255,0.2);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 18px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    color: #333;
+    cursor: default;
+    user-select: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.weather:hover {
+    transform: scale(1.02);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+}
+
+.widget-icon {
+    font-size: 2.5rem;
+    line-height: 1;
+}
+
+.details {
+    display: flex;
+    flex-direction: column;
+}
+
+.temp {
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+}
+
+.location{
+    font-size: 0.85rem;
+    font-weight: 500;
+    opacity: 0.8;
+    margin-top: 2px;
+}
+
+.description{
+    font-size: 0.75rem;
+    opacity: 0.6;
+    text-transform: uppercase;
+}

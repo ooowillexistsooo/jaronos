@@ -10,13 +10,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     addressForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        let url = addressBar.value.trim();
+        const input = addressBar.value.trim();
 
-        if (url === '') return;
+        if (input === '') return;
 
-        if (!/^https?:\/\//i.test(url)) {
-            url = 'https://' + url;
-        }
+        const isUrl = /^https?:\/\//i.test(input) ||
+            (!/\s/.test(input) && input.includes('.'));
+        const url = isUrl
+            ? (/^https?:\/\//i.test(input) ? input : `https://${input}`)
+            : `https://www.google.com/search?igu=1&q=${encodeURIComponent(input)}`;
 
         viewport.src = url;
         addressBar.value = url;

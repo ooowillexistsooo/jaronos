@@ -31,6 +31,28 @@
             <span class="app-icon settings-icon" aria-hidden="true"><i class="fa-solid fa-gear"></i></span>
             <span>Settings</span>
         </button>
+        <button class="desktop-icon" type="button" data-opens-window="weatherWindow" aria-label="Open Settings">
+            <span class="app-icon weather-icon" aria-hidden="true"><i class="fa-solid fa-cloud"></i></span>
+            <span>Weather</span>
+        </button>
+    </div>
+    <div class="window is-closed" id="weatherWindow" style="top: 180px; left: 80px;">
+        <div class="window-header">
+            <span>weather</span>
+            <div class="window-controls">
+                <button class="maximize-window" type="button" aria-label="Maximize window">&#9633;</button>
+                <button class="close-window" type="button" aria-label="Close window">&times;</button>
+            </div>
+        </div>
+        <div class="window-content">
+            <div class="widget-icon" id="weatherIcon">🌤</div>
+            <div class="details">
+                <div class="temp" id="weatherTemp">72°</div>
+                <div class="location" id="weatherLoc">Los Angeles, CA</div>
+                <div class="description" id="weatherDesc">Burningly Hot.</div>
+            </div>
+            <script src="js/weather.js"></script>
+        </div>
     </div>
     <div class="window woa is-closed" id="jaronaWindow" style="top: 180px; left: 80px;">
         <div class="window-header">
@@ -111,13 +133,13 @@
                 </div>
 
                 <form id="address-form" class="address-bar-container">
-                    <input type="text" id="address-bar" placeholder="e.g. https://willexists.space i know shameless self promotion">
+                    <input type="text" id="address-bar" placeholder="Search or enter a web address">
                     <button type="submit" id="go-btn">Go</button>
                 </form>
             </div>
 
             <div class="browser-body">
-                <iframe id="web-viewport" src="https://google.com" sandbox="allow-scripts allow-same-origin allow-forms"></iframe>
+                <iframe id="web-viewport" src="https://www.google.com/search?igu=1" sandbox="allow-scripts allow-same-origin allow-forms"></iframe>
             </div>
             <script src="js/browser.js"></script>
         </div>

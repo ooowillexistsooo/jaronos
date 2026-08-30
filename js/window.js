@@ -1,5 +1,7 @@
 document.querySelectorAll(".window").forEach(setupWindow);
 
+let nextWindowZIndex = 20;
+
 document.addEventListener("click", (event) => {
   const launcher = event.target.closest("[data-opens-window]");
   if (!launcher) return;
@@ -8,11 +10,20 @@ document.addEventListener("click", (event) => {
   openWindow(targetWindow);
 });
 
+document.addEventListener("pointerdown", (event) => {
+  const windowElement = event.target.closest(".window");
+  if (windowElement) bringToFront(windowElement);
+});
+
 function openWindow(element) {
   if (!element) return;
 
   element.classList.remove("is-closed");
-  element.style.zIndex = "2";
+  bringToFront(element);
+}
+
+function bringToFront(element) {
+  element.style.zIndex = String(nextWindowZIndex++);
 }
 
 function closeThing(element) {
@@ -31,9 +42,6 @@ function setupWindow(element) {
 
   if (header) {
     header.addEventListener("mousedown", startDragging);
-    header.addEventListener("mousedown", () => {
-      element.style.zIndex = "2";
-    });
   }
 
   if (closeButton) {
@@ -78,6 +86,7 @@ function setupWindow(element) {
       element.style.left = savedBounds.left;
       element.style.width = savedBounds.width;
       element.style.height = savedBounds.height;
+      bringToFront(element);
       maximizeButton?.setAttribute("aria-label", "Maximize window");
       return;
     }
@@ -89,6 +98,7 @@ function setupWindow(element) {
       height: `${element.offsetHeight}px`
     };
     element.classList.add("maximized");
+    bringToFront(element);
     maximizeButton?.setAttribute("aria-label", "Restore window");
   }
 }
