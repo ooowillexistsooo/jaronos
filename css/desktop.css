@@ -11,6 +11,15 @@ div.window {
     z-index: 2;
 }
 
+.window-resize-handle {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 14px;
+    height: 14px;
+    cursor: nwse-resize;
+}
+
 .window-header {
     display: flex;
     align-items: center;
@@ -159,6 +168,10 @@ div.welcome {
 
 .browser-icon {
     background: #6fef84;
+}
+
+.paint-icon {
+    background: #ef6fe2;
 }
 
 .weather-icon {

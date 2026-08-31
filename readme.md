@@ -14,10 +14,13 @@ how i made it:
 - css (love hate relationship now </3)
 - js ("im the hottest jackson!" ahh coding language)
 - pain
+- ctx
 
 features..!
 - petals dancing around your mouse (petal dance refrence..?)
 - browser
 - change the background..?
+- paint app
+- resize apps 
 
 more soon

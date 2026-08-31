@@ -36,9 +36,16 @@ function setupWindow(element) {
   const header = element.querySelector(".window-header");
   const closeButton = element.querySelector(".close-window");
   const maximizeButton = element.querySelector(".maximize-window");
+  const resizeHandle = document.createElement("span");
   let initialX = 0;
   let initialY = 0;
   let savedBounds = null;
+  let initialWidth = 0;
+  let initialHeight = 0;
+
+  resizeHandle.className = "window-resize-handle";
+  resizeHandle.setAttribute("aria-hidden", "true");
+  element.appendChild(resizeHandle);
 
   if (header) {
     header.addEventListener("mousedown", startDragging);
@@ -51,6 +58,8 @@ function setupWindow(element) {
   if (maximizeButton) {
     maximizeButton.addEventListener("click", toggleMaximize);
   }
+
+  resizeHandle.addEventListener("pointerdown", startResizing);
 
   function startDragging(e) {
     if (e.target.closest("button") || element.classList.contains("maximized")) return;
@@ -77,6 +86,37 @@ function setupWindow(element) {
 
   function stopDragging() {
     document.removeEventListener("mousemove", dragWindow);
+  }
+
+  function startResizing(e) {
+    if (element.classList.contains("maximized")) return;
+    e.preventDefault();
+    e.stopPropagation();
+    resizeHandle.setPointerCapture(e.pointerId);
+
+    initialX = e.clientX;
+    initialY = e.clientY;
+    initialWidth = element.offsetWidth;
+    initialHeight = element.offsetHeight;
+
+    document.addEventListener("pointermove", resizeWindow);
+    document.addEventListener("pointerup", stopResizing, { once: true });
+  }
+
+  function resizeWindow(e) {
+    e.preventDefault();
+
+    const minimumWidth = 260;
+    const minimumHeight = header?.offsetHeight + 40 || 80;
+    const width = Math.max(minimumWidth, initialWidth + e.clientX - initialX);
+    const height = Math.max(minimumHeight, initialHeight + e.clientY - initialY);
+
+    element.style.width = `${width}px`;
+    element.style.height = `${height}px`;
+  }
+
+  function stopResizing() {
+    document.removeEventListener("pointermove", resizeWindow);
   }
 
   function toggleMaximize() {

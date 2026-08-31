@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/desktop.css">
     <link rel="stylesheet" href="css/browser.css">
     <link rel="stylesheet" href="css/petal.css">
+    <link rel="stylesheet" href="css/paint.css">
 </head>
 <body>
     <div class="top">
@@ -35,8 +36,41 @@
             <span class="app-icon weather-icon" aria-hidden="true"><i class="fa-solid fa-cloud"></i></span>
             <span>Weather</span>
         </button>
+        <button class="desktop-icon" type="button" data-opens-window="paintWindow" aria-label="Open Settings">
+            <span class="app-icon paint-icon" aria-hidden="true"><i class="fa-solid fa-brush"></i></span>
+            <span>jspaint</span>
+        </button>
     </div>
-    <div class="window is-closed" id="weatherWindow" style="top: 180px; left: 80px;">
+    <div class="window is-closed" id="paintWindow" style="top: 180px; left: 80px;">
+        <div class="window-header">
+            <span>jspaint</span>
+            <div class="window-controls">
+                <button class="maximize-window" type="button" aria-label="Maximize window">&#9633;</button>
+                <button class="close-window" type="button" aria-label="Close window">&times;</button>
+            </div>
+        </div>
+        <div class="window-content">
+            <div class="toolbar">
+                <div class="tool-group">
+                    <label for="colorPicker">Color:</label>
+                    <input type="color" id="colorPicker" value="#000000">
+                </div>
+                <div class="tool-group">
+                    <label for="brushSize">Size (<span id="sizeVal">5</span>px):</label>
+                    <input type="range" id="brushSize" min="1" max="50" value="5">
+                </div>
+                   <div class="tool-group">
+                    <button id="eraserBtn" class="paint">Eraser</button>
+                    <button id="clearBtn" class="paint">Clear All</button>
+                </div>
+            </div>
+            <div class="canvas-area">
+                <canvas id="paintCanvas"></canvas>
+            </div>
+            <script src="js/paint.js"></script>
+        </div>
+    </div>
+        <div class="window is-closed" id="weatherWindow" style="top: 180px; left: 80px;">
         <div class="window-header">
             <span>weather</span>
             <div class="window-controls">
@@ -75,20 +109,34 @@
             </div>
         </div>
         <div class="window-content">
-        <audio id="themusic" loop>
-            <source src="music/driving.mp3" type="audio/mpeg">
+        <audio id="themusic" src="music/driving.mp3" preload="none" loop>
             Audio is disabled
         </audio>
 
         <h1>Welcome to JaronOS</h1>
         <p>This site is based off of deltarune chapter 5, but it is still very enjoyable if you haven't played it.</p>
-        <button id="musicButton" onclick="toggleMusic()">turn on music</button>
+        <p>also to resize apps use the bottom right hand corner</p>
+        <button id="musicButton" type="button" onclick="toggleMusic()">turn on music</button>
         <script>
         const music = document.getElementById("themusic");
         const button = document.getElementById("musicButton");
-        let isMediaLoading = false; 
+        let isMediaLoading = false;
 
-        function toggleMusic() {
+        music.addEventListener("play", () => {
+            button.textContent = "turn off music";
+        });
+
+        music.addEventListener("pause", () => {
+            if (!music.ended) button.textContent = "turn on music";
+        });
+
+        music.addEventListener("error", () => {
+            isMediaLoading = false;
+            button.disabled = false;
+            button.textContent = "try music again";
+        });
+
+        async function toggleMusic() {
             if (!music) {
                 console.error("Could not find the HTML audio element with ID 'themusic'.");
                 return;
@@ -98,19 +146,17 @@
 
             if (music.paused) {
                 isMediaLoading = true;
-                
-                music.play()
-                    .then(() => {
-                        isMediaLoading = false; 
-                        button.textContent = "turn off music";
-                    })
-                    .catch(error => {
-                        isMediaLoading = false; 
-                        console.error("Playback failed:", error);
-                    });
+
+                try {
+                    await music.play();
+                } catch (error) {
+                    console.error("Playback failed:", error);
+                    button.textContent = "try music again";
+                } finally {
+                    isMediaLoading = false;
+                }
             } else {
                 music.pause();
-                button.textContent = "you turned it on and then off again??? how rude.";
             }
         }
         </script>
